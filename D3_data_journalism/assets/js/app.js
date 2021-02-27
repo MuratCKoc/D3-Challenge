@@ -26,7 +26,7 @@ var chartGroup = svg.append("g")
 
 // Initial Params
 var chosenXAxis = "poverty";
-var chosenYAxis= "obesity"
+var chosenYAxis= "obesity";
 
 // function used for updating x-scale var upon click on axis label
 function xScale(data, chosenXAxis) {
@@ -41,6 +41,17 @@ function xScale(data, chosenXAxis) {
     console.log(xLinearScale)
   return xLinearScale;
 
+}
+
+// function used for updating y-scale var upon click on axis lavel
+function yScale(data, chosenYAxis) {
+    // create scales
+    var yLinearScale = d3.scaleLinear()
+    .domain([d3.min(data, d=> d[chosenYAxis]) * 0.8,
+        d3.max(data, d => d[chosenYAxis]) * 1.2])
+    .range([0, width]);
+
+    return yLinearScale;
 }
 
 //function yScale(date, chosenYAxis )
