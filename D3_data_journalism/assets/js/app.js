@@ -64,6 +64,7 @@ function renderAxesX(newXScale, xAxis) {
 
     return xAxis;
 }
+
 // rendering y axes
 function renderAxesY(newYScale, yAxis) {
     var leftAxis = d3.axisLeft(newYScale);
@@ -75,7 +76,15 @@ function renderAxesY(newYScale, yAxis) {
     return yAxis;
 }
 
+function renderCirclesText(circlesText, newXScale, chosenXAxis, newYscale, chosenYAxis) {
 
+    circlesText.transition()
+    .duration(1000)
+    .attr("x", d => newXScale(d[chosenXAxis]))
+    .attr("y", d => newYscale(d[chosenYAxis]));
+
+    return circlesText;
+}
 
 
 // Retreive data from the CSV file
