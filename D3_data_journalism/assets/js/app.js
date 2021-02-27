@@ -189,21 +189,21 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
 
     var ageLabel = xLabelsGroup.append("text")
         .attr("x", 0)
-        .attr("y", 30)
+        .attr("y", 20)
         .attr("value", "age") // value to grab for event listener
         .classed("active", true)
         .text("Age (Median)");
 
     var incomeLabel = xLabelsGroup.append("text")
         .attr("x", 0)
-        .attr("y", 50)
+        .attr("y", 40)
         .attr("value", "income") // value to grab for event listener
         .classed("inactive", true)
         .text("Household Income (Median)");
 
     var povertyLabel = xLabelsGroup.append("text")
         .attr("x", 0)
-        .attr("y", 70)
+        .attr("y", 60)
         .attr("value", "poverty") // value to grab for event listener
         .classed("inactive", true)
         .text("In Poverty (%)");
