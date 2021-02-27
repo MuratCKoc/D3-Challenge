@@ -30,6 +30,7 @@ var chosenYAxis= "obesity"
 
 // function used for updating x-scale var upon click on axis label
 function xScale(data, chosenXAxis) {
+
   // create scales
   var xLinearScale = d3.scaleLinear()
     .domain([d3.min(data, d => d[chosenXAxis]) * 0.8,
@@ -45,6 +46,30 @@ function xScale(data, chosenXAxis) {
 //function yScale(date, chosenYAxis )
 
 // Retreive data from the CSV file
-d3.csv("assets/data/data.csv", function(Data) {
+d3.csv("assets/data/data.csv").then(function(Data, err) {
+    if (err) throw err;
     console.log(Data)
+
+    Data.forEach(function (data){
+        data.poverty = +data.poverty;
+        data.age = +data.age;
+        data.income = +data.income;
+        data.healthcare = +data.healthcare;
+        data.obesity = +data.obesity;
+        data.smokes = +data.smokes;
+    });
+
+    // LinearScales
+    var xLinearScale = xScale(Data, chosenXAxis);
+
+
+    // Create initial axis functions
+    var bottomAxis = d3.axisBottom(xLinearScale);
+
+
+    // append x axis
+    var xAxis = chartGroup.append("g")
+    .attr("transform", `translate(0, ${height})`)
+    .call(bottomAxis);
 });
+
