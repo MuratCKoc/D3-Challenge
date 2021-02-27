@@ -103,18 +103,10 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
     var labelX = chosenXAxis;
     labelX = labelX.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
-    console.log("XX",labelX)
 
     var labelY = chosenYAxis;
     labelY = labelY.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
-    console.log("XX",labelY)
 
-
-    var labelY = function (chosenYAxis) {
-                return string.charAt(0).toUpperCase() + string.slice(1);
-            } +": ";
-
-    console.log("X,Y",labelX,labelY)
     var toolTip = d3.tip()
         .attr("class", "d3-tip")
         .offset([0, 0])
