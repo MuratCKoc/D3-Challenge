@@ -101,14 +101,20 @@ function renderCirclesText(circlesText, newXScale, chosenXAxis, newYscale, chose
 
 function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
-    var labelX = function (chosenXAxis) {
-                return string.charAt(0).toUpperCase() + string.slice(1);
-                } +": ";
+    var labelX = chosenXAxis;
+    labelX = labelX.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
+    console.log("XX",labelX)
+
+    var labelY = chosenYAxis;
+    labelY = labelY.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
+    console.log("XX",labelY)
+
 
     var labelY = function (chosenYAxis) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
-                } +": ";
+            } +": ";
 
+    console.log("X,Y",labelX,labelY)
     var toolTip = d3.tip()
         .attr("class", "d3-tip")
         .offset([0, 0])
@@ -191,7 +197,7 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
         .attr("x", 0)
         .attr("y", 20)
         .attr("value", "age") // value to grab for event listener
-        .classed("active", true)
+        .classed("inactive", true)
         .text("Age (Median)");
 
     var incomeLabel = xLabelsGroup.append("text")
@@ -205,7 +211,7 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
         .attr("x", 0)
         .attr("y", 60)
         .attr("value", "poverty") // value to grab for event listener
-        .classed("inactive", true)
+        .classed("active", true)
         .text("In Poverty (%)");
     
      // Create group for  3 y-axis labelsasd
@@ -249,8 +255,6 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
         // replaces chosenXAxis with value
         chosenXAxis = value;
 
-        // console.log(chosenXAxis)
-
         // functions here found above csv import
         // updates x scale for new data
         xLinearScale = xScale(Data, chosenXAxis);
@@ -269,35 +273,35 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
 
         // changes classes to change bold text for x axis
         if (chosenXAxis === "poverty") {
-          PovertyLabel
+          povertyLabel
             .classed("active", true)
             .classed("inactive", false);
-          AgeLabel
+          ageLabel
             .classed("active", false)
             .classed("inactive", true);
-          IncomeLabel
+          incomeLabel
             .classed("active", false)
             .classed("inactive", true);
         }
         else if (chosenXAxis === "age") {
-          PovertyLabel
+          povertyLabel
             .classed("active", false)
             .classed("inactive", true);
-          AgeLabel
+          ageLabel
             .classed("active", true)
             .classed("inactive", false);
-          IncomeLabel
+          incomeLabel
             .classed("active", false)
             .classed("inactive", true);
         }
         else if (chosenXAxis === "income") {
-          PovertyLabel
+          povertyLabel
             .classed("active", false)
             .classed("inactive", true);
-          AgeLabel
+          ageLabel
             .classed("active", false)
             .classed("inactive", true);
-          IncomeLabel
+          incomeLabel
             .classed("active", true)
             .classed("inactive", false);
         }
