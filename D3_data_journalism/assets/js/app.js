@@ -77,7 +77,17 @@ function renderAxesY(newYScale, yAxis) {
 }
 
 
+// function used for updating circles group with a transition to
+// new circles
+function renderCircles(circlesGroup, newXScale, chosenXAxis, newYscale, chosenYAxis) {
 
+    circlesText.transition()
+    .duration(1000)
+    .attr("cx", d => newXScale(d[chosenXAxis]))
+    .attr("cy", d => newYscale(d[chosenYAxis]));
+
+    return circlesGroup;
+}
 
 function renderCirclesText(circlesText, newXScale, chosenXAxis, newYscale, chosenYAxis) {
 
@@ -89,16 +99,27 @@ function renderCirclesText(circlesText, newXScale, chosenXAxis, newYscale, chose
     return circlesText;
 }
 
-function renderCircles(circlesGroup, newXScale, chosenXAxis, newYscale, chosenYAxis) {
+function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
-    circlesText.transition()
-    .duration(1000)
-    .attr("cx", d => newXScale(d[chosenXAxis]))
-    .attr("cy", d => newYscale(d[chosenYAxis]));
+    var labelX = function (chosenXAxis) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+                } +": ";
 
-    return circlesGroup;
+    var labelY = function (chosenYAxis) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+                } +": ";
+
+    var toolTip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([80, -60])
+        .html(function(d) {
+            return(`${d.state}<br>${labelX}<br>${labelY} ${d[chosenXAxis]}`);
+        });
+    
+        circlesGroup.call(toolTip);
+    
+
 }
-
 
 // Retreive data from the CSV file
 d3.csv("assets/data/data.csv").then(function(Data, err) {
