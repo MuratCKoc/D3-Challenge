@@ -54,7 +54,29 @@ function yScale(data, chosenYAxis) {
     return yLinearScale;
 }
 
-//function yScale(date, chosenYAxis )
+// rendering X axes
+function renderAxesX(newXScale, xAxis) {
+    var bottomAxis = d3.axisBottom(newXScale);
+
+    xAxis.transition()
+        .duration(1000)
+        .call(bottomAxis);
+
+    return xAxis;
+}
+// rendering y axes
+function renderAxesY(newYScale, yAxis) {
+    var leftAxis = d3.axisLeft(newYScale);
+
+    yAxis.transition()
+        .duration(1000)
+        .call(leftAxis);
+
+    return yAxis;
+}
+
+
+
 
 // Retreive data from the CSV file
 d3.csv("assets/data/data.csv").then(function(Data, err) {
@@ -72,6 +94,7 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
 
     // LinearScales
     var xLinearScale = xScale(Data, chosenXAxis);
+    var yLinearScale = yScale(Data, chosenYAxis);
 
 
     // Create initial axis functions
