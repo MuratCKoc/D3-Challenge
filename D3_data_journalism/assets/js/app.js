@@ -123,7 +123,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
             toolTip.show(data, this);
         })
         // mouse out
-        .on("mouseout", function(data, index) {
+        .on("mouseout", function(index, data) {
             toolTip.hide(data, this);
         });
 
@@ -168,11 +168,12 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
         .append("circle")
         .attr("cx", d => xLinearScale(d[chosenXAxis]))
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
-        .attr("r", 20)
+        .attr("r", 18)
         .classed("stateCircle", true);
 
     // append initial labels
-    var circlesTextGroup = chartGroup.selectAll("text")
+    var circlesTextGroup = chartGroup.append("g")
+    var circlesText = circlesTextGroup.selectAll("text")
         .data(Data)
         .enter()
         .append("text")
