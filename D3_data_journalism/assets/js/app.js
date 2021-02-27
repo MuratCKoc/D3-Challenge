@@ -216,7 +216,6 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
     .attr("transform", "rotate(-90)")
     .attr("x", 0)
     .attr("y", -170)
-    // .attr("dy", "1em")
     .attr("value", "obesity") // value to grab for event listener
     .classed("active", true)
     .text("Obese (%)");
@@ -225,7 +224,6 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
     .attr("transform", "rotate(-90)")
     .attr("x", 0)
     .attr("y", -150) 
-    // .attr("dy", "1em")
     .attr("value", "smokes") // value to grab for event listener
     .classed("inactive", true)
     .text("Smokes (%)");
@@ -234,7 +232,6 @@ d3.csv("assets/data/data.csv").then(function(Data, err) {
     .attr("transform", "rotate(-90)")
     .attr("x", 0)
     .attr("y", -130)
-    // .attr("dy", "1em")
     .attr("value", "healthcare") // value to grab for event listener
     .classed("inactive", true)
     .text("Lacks Healthcare (%)");
