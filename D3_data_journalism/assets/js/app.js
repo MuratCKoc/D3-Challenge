@@ -76,6 +76,9 @@ function renderAxesY(newYScale, yAxis) {
     return yAxis;
 }
 
+
+
+
 function renderCirclesText(circlesText, newXScale, chosenXAxis, newYscale, chosenYAxis) {
 
     circlesText.transition()
@@ -84,6 +87,16 @@ function renderCirclesText(circlesText, newXScale, chosenXAxis, newYscale, chose
     .attr("y", d => newYscale(d[chosenYAxis]));
 
     return circlesText;
+}
+
+function renderCircles(circlesGroup, newXScale, chosenXAxis, newYscale, chosenYAxis) {
+
+    circlesText.transition()
+    .duration(1000)
+    .attr("cx", d => newXScale(d[chosenXAxis]))
+    .attr("cy", d => newYscale(d[chosenYAxis]));
+
+    return circlesGroup;
 }
 
 
