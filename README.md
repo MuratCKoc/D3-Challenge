@@ -52,12 +52,12 @@ var circles = chart.selectAll("circle")
 These gifs are not my own but are an accurate depiction of how the bonus.html page looks
 
 Interactive Axes
-![Demo of Bonus.html](D3_data_journalism/assets/images/7-animated-scatter.gif)
+![Demo of Bonus.html](D3_data_journalism/assets/Images/7-animated-scatter.gif)
 
 Tooltips
-![Demo of Bonus.html](D3_data_journalism/assets/images/8-tooltip.gif)
+![Demo of Bonus.html](D3_data_journalism/assets/Images/8-tooltip.gif)
 
 ### Screenshots
 
 Example of the index.html
-![Screen of index.html](D3_data_journalism/assets/images/ss.png)
+![Screen of index.html](D3_data_journalism/assets/Images/ss.png)
